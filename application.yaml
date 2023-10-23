@@ -13,9 +13,10 @@ spec:
     server: https://kubernetes.default.svc
     namespace: question-app
 
-  SyncPolicy:
-    SyncOption:
-    - CreateNamespace: true
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace= true
+
 
     automated:
       selfHeal: true # always sync the cluster to github even if someone updated the cluster manually
