@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/akessil/question-kubernetes-config.git
+    targetRevision: HEAD
+    path: dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: question-app
+
+  SyncPolicy:
+    SyncOption:
+    - CreateNamespace: true
+
+    automated:
+      selfHeal: true # always sync the cluster to github even if someone updated the cluster manually
+      prune: true # to be able de delete the resources (always sync to github)

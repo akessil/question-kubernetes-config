@@ -1,0 +1,21 @@
+apiVersion: apps/v1 # the value depends on the kind
+kind: Deployment
+metadata:
+  name: question-app-deployment
+  labels:
+    app: question-app-deployment # used in service configuration file
+spec: # the specificaiton of the deployment
+  selector: # the selectorof the deployment
+    matchLabels:
+      app: question-app # maths with label in template (pod)
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template: # the template to defind the pod(s), the template depends on the kind of the resource
+    metadata: # the metadata of the pod(s)
+      labels:
+        app: question-app # used in matchlabels
+    spec: # the specificaiton of the pod
+      containers:
+        - name: question-app
+          image: docker.io/akessil/question-app:v1
+          ports:
+            - containerPort: 8080 # the same as targetPort in service configuration
