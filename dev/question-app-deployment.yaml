@@ -16,6 +16,6 @@ spec: # the specificaiton of the deployment
     spec: # the specificaiton of the pod
       containers:
         - name: question-app
-          image: docker.io/akessil/question-app:v1
+          image: docker.io/akessil/question-app:1.0
           ports:
             - containerPort: 8080 # the same as targetPort in service configuration
